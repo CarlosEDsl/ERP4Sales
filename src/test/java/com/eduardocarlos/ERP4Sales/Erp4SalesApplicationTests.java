@@ -1,4 +1,4 @@
-package com.carloseduardo.ERP4Sales;
+package com.eduardocarlos.ERP4Sales;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
