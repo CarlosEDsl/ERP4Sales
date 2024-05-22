@@ -23,7 +23,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name", unique = true, nullable = false)
     @NotBlank
     @Size(min = 2, max = 30)
     private String name;
@@ -31,20 +31,20 @@ public class Product {
     @Column(name = "description", length = 250)
     private String description;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     @NotBlank
     private BigDecimal price;
 
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     @NotBlank
     private Integer amount;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "creationDate")

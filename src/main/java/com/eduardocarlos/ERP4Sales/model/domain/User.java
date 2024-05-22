@@ -26,27 +26,27 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     @NotBlank
     @Size(min = 2, max = 100)
     private String name;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     @NotBlank
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Size(min = 8, max = 120)
     private String password;
 
-    @Column(name = "userlogin", unique = true)
+    @Column(name = "userlogin", unique = true, nullable = false)
     @NotBlank
     @Size(min = 2, max = 30)
     private String user;
 
-    @Column(name = "profile")
+    @Column(name = "profile", nullable = false)
     @NotBlank
     private ProfileEnum profile;
 
-    @Column(name= "state")
+    @Column(name= "state", nullable = false)
     @NotBlank
     private boolean state = true;
 
