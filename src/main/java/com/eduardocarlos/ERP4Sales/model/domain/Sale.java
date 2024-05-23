@@ -3,7 +3,9 @@ package com.eduardocarlos.ERP4Sales.model.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EqualsAndHashCode
 public class Sale {
 
     final static String TABLE_NAME = "sale";
@@ -32,7 +35,7 @@ public class Sale {
     @NotBlank
     private User user;
 
-    @Column(name = "saleTotal", nullable = false)
+    @Column(name = "saleTotal", nullable = false, updatable = false)
     @NotBlank
     private BigDecimal saleTotal;
 
@@ -43,13 +46,15 @@ public class Sale {
     @Column(name = "discount")
     private BigDecimal discount;
 
-    @Column(name = "change")
-    private BigDecimal change;
+    @Column(name = "change_amount")
+    private BigDecimal changeAmount;
 
+    @CreationTimestamp
     @Column(name = "sellTime")
-    private LocalDateTime sellTime = LocalDateTime.now();
+    private LocalDateTime sellTime;
 
+    @CreationTimestamp
     @Column(name = "lastUpdate")
-    private LocalDateTime lastUpdate = LocalDateTime.now();
+    private LocalDateTime lastUpdate;
 
 }

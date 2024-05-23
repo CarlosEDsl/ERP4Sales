@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -50,11 +51,12 @@ public class User {
     @NotBlank
     private boolean state = true;
 
-    @Column(name = "creation_time")
-    private LocalDateTime creation_time = LocalDateTime.now();
+    @CreationTimestamp
+    @Column(name = "creation_time", nullable = false, updatable = false)
+    private LocalDateTime creationTime;
 
     @Column(name = "last_login")
-    private LocalDateTime last_login = LocalDateTime.parse("0001-01-01 00:00:00" , DateTimeFormatter.ofPattern("0001-01-01 00:00:00"));
+    private LocalDateTime lastLogin = LocalDateTime.of(1, 1, 1, 0, 0);
 
     // Methods
 
