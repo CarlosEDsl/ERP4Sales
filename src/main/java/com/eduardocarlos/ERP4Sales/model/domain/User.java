@@ -1,17 +1,21 @@
 package com.eduardocarlos.ERP4Sales.model.domain;
-import com.eduardocarlos.ERP4Sales.model.enums.ProfileEnum;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = User.TABLE_NAME)
 @Data
@@ -44,8 +48,10 @@ public class User {
     private String user;
 
     @Column(name = "profile", nullable = false)
-    @NotBlank
-    private ProfileEnum profile;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @CollectionTable(name = "user_profile")
+    private Set<Integer> profile = new HashSet<>();
 
     @Column(name= "state", nullable = false)
     @NotBlank
@@ -57,6 +63,10 @@ public class User {
 
     @Column(name = "last_login")
     private LocalDateTime lastLogin = LocalDateTime.of(1, 1, 1, 0, 0);
+
+    public boolean getState(){
+        return this.state;
+    }
 
     // Methods
 
