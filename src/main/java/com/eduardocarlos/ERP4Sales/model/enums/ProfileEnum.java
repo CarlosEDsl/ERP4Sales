@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Objects;
+import java.util.Set;
 
 @AllArgsConstructor
 @Getter
@@ -27,6 +28,5 @@ public enum ProfileEnum {
         }
         throw new IllegalArgumentException("Invalid code" + code);
     }
-
 
 }

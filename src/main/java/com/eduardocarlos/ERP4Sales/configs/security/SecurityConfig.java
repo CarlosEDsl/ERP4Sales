@@ -19,8 +19,12 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
+
+        //Make the authorization and authentication filter
         return http.build();
     }
+
+
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

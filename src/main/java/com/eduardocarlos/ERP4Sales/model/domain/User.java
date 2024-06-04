@@ -1,5 +1,6 @@
 package com.eduardocarlos.ERP4Sales.model.domain;
 
+import com.eduardocarlos.ERP4Sales.model.enums.ProfileEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -16,6 +17,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity(name = User.TABLE_NAME)
 @Data
@@ -66,6 +68,10 @@ public class User {
 
     public boolean getState(){
         return this.state;
+    }
+
+    public Set<ProfileEnum> getProfiles() {
+        return this.profile.stream().map(ProfileEnum::toEnum).collect(Collectors.toSet());
     }
 
     // Methods
