@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 @Service
 public class UserService {
 
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
